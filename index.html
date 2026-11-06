@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deriv Trading Tools</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#101820;color:white;font-family:Arial,sans-serif}
+header{background:#172b3a;padding:22px;text-align:center}
+header h1{color:#00d09c;margin:0}
+main{padding:18px;max-width:600px;margin:auto}
+.card{background:#1c2d3b;padding:20px;margin:15px 0;border-radius:12px}
+h2{color:#00d09c}
+button{background:#00d09c;border:0;padding:13px;border-radius:7px;font-weight:bold;width:100%;margin-top:10px}
+input,select{width:100%;padding:13px;margin:8px 0;border-radius:6px;border:1px solid #536575;background:#101820;color:white}
+footer{text-align:center;padding:25px;color:#aaa}
+</style>
+</head>
+<body>
+<header>
+<h1>DERIV TRADING TOOLS</h1>
+<p>Smart tools for Deriv traders</p>
+</header>
+<main>
+<div class="card">
+<h2>Welcome Trader 👋</h2>
+<p>Your free trading tools dashboard.</p>
+</div>
+<div class="card">
+<h2>Trade Calculator</h2>
+<label>Account Balance ($)</label>
+<input type="number" id="balance" placeholder="Enter balance">
+<label>Risk Percentage (%)</label>
+<input type="number" id="risk" placeholder="Example: 2">
+<button onclick="calculate()">Calculate Risk</button>
+<h3 id="result">Your result will appear here.</h3>
+</div>
+<div class="card">
+<h2>Trading Journal</h2>
+<input id="symbol" placeholder="Market e.g. Volatility 100">
+<select id="direction">
+<option>Rise</option>
+<option>Fall</option>
+</select>
+<input id="notes" placeholder="Trade notes">
+<button onclick="saveTrade()">Save Trade</button>
+<p id="saved"></p>
+</div>
+</main>
+<footer>Deriv Trading Tool | Educational purposes only</footer>
+<script>
+function calculate(){
+let b=Number(document.getElementById('balance').value);
+let r=Number(document.getElementById('risk').value);
+if(b<=0||r<=0||r>100){
+document.getElementById('result').innerText='Enter valid values.';
+return;
+}
+document.getElementById('result').innerText='Risk amount: $'+(b*r/100).toFixed(2);
+}
+function saveTrade(){
+let s=document.getElementById('symbol').value;
+let d=document.getElementById('direction').value;
+let n=document.getElementById('notes').value;
+if(!s){alert('Enter a market first');return;}
+document.getElementById('saved').innerText='Saved: '+s+' - '+d+' - '+n;
+}
+</script>
+</body>
+</html>
